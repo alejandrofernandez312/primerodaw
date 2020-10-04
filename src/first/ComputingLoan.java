@@ -11,13 +11,15 @@ public class ComputingLoan {
 		double monthlyInterest = 0.3;
 		System.out.println("Cuanto dinero desea solicitar:");
 		double loanAmount = input.nextDouble();
-		System.out.println("Elige los a�os que quieras de plazo para pagarlo:");
+		System.out.println("Elige los años que quieras de plazo para pagarlo:");
 		double years = input.nextDouble();
 		
-		monthlyPayment = (loanAmount * monthlyInterest)/(1-(1/(1+monthlyInterest))));
+		double pow = years * 12;
 		
+		monthlyPayment = (loanAmount * monthlyInterest)/(1-(1/((Math.pow( 1 + monthlyInterest, years * 12)))));
+		monthlyPayment = (int)(monthlyPayment * 100)/100.0;
 		
-		System.out.println();
+		System.out.println(monthlyPayment + "€/month");
 
 	}
 
