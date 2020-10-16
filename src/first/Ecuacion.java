@@ -9,11 +9,24 @@ public class Ecuacion {
 		Scanner input = new Scanner (System.in);
 		
 		System.out.println("Teclee un valor para a:");
-		double a = input.nextDouble();
+		int a = input.nextInt();
 		System.out.println("Teclee un valor para b:");
-		double b = input.nextDouble();
+		int b = input.nextInt();
 		System.out.println("Teclee un valor para c:");
-		double c = input.nextDouble();
+		int c = input.nextInt();
+		
+		double d = Math.pow(b, 2) - 4*a*c;
+		if (d<0) {
+			System.out.println("No real solution");
+		}
+		else if (d==0) {
+			System.out.println(" Una solución:" + (-b/2*a));
+		}
+		else {
+		double x1 = ((-b)+Math.sqrt(d))/2*a;
+		double x2 = ((-b)-Math.sqrt(d))/2*a;
+		System.out.println("Soluciones: "+x1+""+x2);
+		}
 		
 		
 
