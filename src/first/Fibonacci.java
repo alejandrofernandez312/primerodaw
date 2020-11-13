@@ -6,16 +6,24 @@ public class Fibonacci {
 
 	public static void main(String[] args) {
 		Scanner input = new Scanner (System.in);
+		System.out.println("¿Qué término de la serie fibonacci quieres?");
+		int n = input.nextInt();
 		
+		System.out.println("Tu término "+ fibonacci(n));
+		
+	}
+	
+	public static int fibonacci(int n) {
 		int a=0;
 		int b=1;
-		
-		for (int i=1;i<=10;i++) {
-			System.out.println(a + " "+ b + " " + (a+b));
-			a=a+b;
-			b=a+b;
+		int c=0;
+		if (n==1) return 0;
+		if (n==2) return 1;
+		for (int i=3;i<=n;i++) {
+			c=a+b;
+			a=b;
+			b=c;
 		}
-
+		return c;
 	}
-
 }
