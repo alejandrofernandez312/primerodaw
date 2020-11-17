@@ -1,4 +1,4 @@
-package First;
+package first;
 
 import java.util.Scanner;
 
@@ -20,29 +20,15 @@ public class MenuArray {
 
 			switch (op) {
 			case 1:
-				System.out.println("¿Cuántos valores quieres que tenga el array?");
-				int n = input.nextInt();
-				int[] array = new int[n];
-				for (int i = 0; i < n; i++) {
-					System.out.println("Teclea un valor para la celda " + i + ":");
-					int valor = input.nextInt();
-					array[i] = valor;
-				}
-				for (int i = 0; i < n; i++) {
+				int array[] = inputarray();
+				for (int i = 0; i < array.length; i++) {
 					printarray += " " + array[i];
 				}
 				break;
 			case 2:
-				System.out.println("¿Cuántos valores quieres que tenga el array?");
-				n = input.nextInt();
-				int[] miarray = new int[n];
-				for (int i = 0; i < n; i++) {
-					int valor = (int) (Math.random() * 10) + 1;
-					miarray[i] = valor;
-					i++;
-				}
-				for (int i = 0; i < n; i++) {
-					printarray1 += " " + miarray[i];
+				int array2[] = arrayrandom();
+				for (int i = 0; i < array2.length; i++) {
+					printarray1 += " " + array2[i];
 				}
 				break;
 			case 3:
@@ -50,7 +36,7 @@ public class MenuArray {
 				System.out.println(printarray1);
 				break;
 			case 4:
-				
+				System.out.println(printarray.replace(" ", ""));
 			}
 
 		} while (op != 9);
@@ -71,5 +57,29 @@ public class MenuArray {
 		System.out.println("\t9.-Exit");
 	}
 
-	
+	public static int[] inputarray() {
+		Scanner input = new Scanner(System.in);
+		System.out.println("¿Cuántos valores quieres que tenga el array?");
+		int n = input.nextInt();
+		int[] array = new int[n];
+		for (int i = 0; i < n; i++) {
+			System.out.println("Teclea un valor para la celda " + i + ":");
+			int valor = input.nextInt();
+			array[i] = valor;
+		}
+		return array;
+	}
+
+	public static int[] arrayrandom() {
+		Scanner input = new Scanner(System.in);
+		System.out.println("¿Cuántos valores quieres que tenga el array?");
+		int n = input.nextInt();
+		int[] miarray = new int[n];
+		for (int i = 0; i < n; i++) {
+			int valor = (int) (Math.random() * 10) + 1;
+			miarray[i] = valor;
+			i++;
+		}
+		return miarray;
+	}
 }
