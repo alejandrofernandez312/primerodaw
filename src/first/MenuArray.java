@@ -51,11 +51,11 @@ public class MenuArray {
 		for (int i = 0; i < array.length; i++) {
 			int r = (int) (Math.random() * array.length);
 			int aux = array[i];
-			array [i]=array[r];
-			array [r]=aux;
+			array[i] = array[r];
+			array[r] = aux;
 		}
-		for (int i=0;i < array.length; i++)
-			report+=" "+array[i];
+		for (int i = 0; i < array.length; i++)
+			report += " " + array[i];
 		return report;
 
 	}
