@@ -52,7 +52,6 @@ public class MenuArray {
 			int r = (int) (Math.random() * array.length);
 			int aux = array[i];
 			array [i]=array[r];
-			int aux2 = array[r];
 			array [r]=aux;
 		}
 		for (int i=0;i < array.length; i++)
