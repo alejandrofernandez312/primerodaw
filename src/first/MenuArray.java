@@ -1,4 +1,4 @@
-package first;
+package First;
 
 import java.util.Scanner;
 
@@ -9,8 +9,8 @@ public class MenuArray {
 		Scanner input = new Scanner(System.in);
 
 		int op;
-		String printarray = "";
-		String printarray1 = "";
+
+		int[] array = null;
 
 		do {
 			menu();
@@ -20,27 +20,75 @@ public class MenuArray {
 
 			switch (op) {
 			case 1:
-				int array[] = inputarray();
-				for (int i = 0; i < array.length; i++) {
-					printarray += " " + array[i];
-				}
+				array = inputarray();
 				break;
 			case 2:
-				int array2[] = arrayrandom();
-				for (int i = 0; i < array2.length; i++) {
-					printarray1 += " " + array2[i];
-				}
+				array = randomarray();
 				break;
 			case 3:
-				System.out.println(printarray);
-				System.out.println(printarray1);
+				System.out.println(printarray(array));
 				break;
 			case 4:
-				System.out.println(printarray.replace(" ", ""));
+				System.out.println("La suma de " + printarray(array) + " es " + sumarray(array));
+				break;
+			case 5:
+				System.out.println("El valor más alto de " + printarray(array) + " es " + largest(array));
+				break;
+			case 6:
+				System.out.println(
+						"El índice más pequeño del valor más alto de " + printarray(array) + " es " + smallest(array));
+				break;
+			case 7:
+				System.out.println("Al barajar " + printarray(array) + " queda " + randomshuf(array));
 			}
 
-		} while (op != 9);
+		} while (op != 8);
 
+	}
+
+	public static String randomshuf(int[] array) {
+		String report = "";
+		for (int i = 0; i < array.length; i++) {
+			int r = (int) (Math.random() * array.length);
+			int aux = array[i];
+			array [i]=array[r];
+			int aux2 = array[r];
+			array [r]=aux;
+		}
+		for (int i=0;i < array.length; i++)
+			report+=" "+array[i];
+		return report;
+
+	}
+
+	public static int sumarray(int[] array) {
+		int sum = 0;
+		for (int i = 0; i < array.length; i++) {
+			sum += array[i];
+		}
+		return sum;
+	}
+
+	public static int smallest(int[] array) {
+		int max = 0;
+		int index = 0;
+		for (int i = 0; i < array.length; i++) {
+			if (array[i] > max) {
+				max = array[i];
+				index = i;
+			}
+
+		}
+		return index;
+	}
+
+	public static int largest(int[] array) {
+		int max = 0;
+		for (int i = 0; i < array.length; i++) {
+			if (array[i] > max)
+				max = array[i];
+		}
+		return max;
 	}
 
 	public static void menu() {
@@ -53,8 +101,7 @@ public class MenuArray {
 		System.out.println("\t5.-Finding the largest element");
 		System.out.println("\t6.-Finding the smallest index of the largest element");
 		System.out.println("\t7.-Random shuffling");
-		System.out.println("\t8.-Shifting elements");
-		System.out.println("\t9.-Exit");
+		System.out.println("\t8.-Exit");
 	}
 
 	public static int[] inputarray() {
@@ -65,6 +112,18 @@ public class MenuArray {
 		for (int i = 0; i < n; i++) {
 			System.out.println("Teclea un valor para la celda " + i + ":");
 			int valor = input.nextInt();
+			array[i] = valor;
+		}
+		return array;
+	}
+
+	public static int[] randomarray() {
+		Scanner input = new Scanner(System.in);
+		System.out.println("¿Cuántos valores quieres que tenga el array?");
+		int n = input.nextInt();
+		int[] array = new int[n];
+		for (int i = 0; i < n; i++) {
+			int valor = (int) (Math.random() * 100) + 1;
 			array[i] = valor;
 		}
 		return array;
@@ -81,5 +140,13 @@ public class MenuArray {
 			i++;
 		}
 		return miarray;
+	}
+
+	public static String printarray(int[] array) {
+		String report = "";
+		for (int i = 0; i < array.length; i++) {
+			report += " " + array[i];
+		}
+		return report;
 	}
 }
