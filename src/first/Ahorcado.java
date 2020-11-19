@@ -29,24 +29,25 @@ public class Ahorcado {
 	
 	public static void ahorcadoesp() {
 		String [] palabra = {"PATATA","CABALLERO","PELOTA","MONITOR","TECLADO"};
-		System.out.println(palabrajugar(palabra));
-		System.out.println(guiones(palabrajugar(palabra)));
+		String palabraajugar=palabrajugar(palabra);
+		System.out.println(palabraajugar);
+		guiones(palabraajugar);
 		
 		
 	}
 	
 	public static String palabrajugar(String [] palabra) {
-		int i= (int)(Math.random()*6);
+		int i= (int)(Math.random()*5);
 		String palabraelegida=palabra[i];
 		return palabraelegida;
 	}
 	
-	public static String guiones(String palabraelegida) {
+	public static void guiones(String palabraelegida) {
 		String report="";
 		for(int i=0;i<palabraelegida.length();i++) {
 			report+="_ ";
 		}
-		return report;
+		System.out.println(report);
 	}
 
 }
