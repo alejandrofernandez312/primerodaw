@@ -35,11 +35,17 @@ public class Ahorcado {
 		guiones(palabraajugar);
 		int fallos =0;
 		while (fallos!=6) {
-			System.out.println("Escribe una letra:");
-			String let=input.next();
-			let=let.toUpperCase();
-			stringaletra(let);
-			comparaguiones(palabraajugar,let);
+			System.out.println("1-.Escribir letra");
+			System.out.println("2-.Resolver palabra");
+			int op=input.nextInt();
+			switch (op) {
+			case 1:
+				System.out.println("Escribe una letra:");
+				String let=input.next();
+				let=let.toUpperCase();
+				stringaletra(let);
+				comparaguiones(palabraajugar,let);
+			}
 			
 		}
 		
