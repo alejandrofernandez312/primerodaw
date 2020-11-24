@@ -28,10 +28,44 @@ public class Ahorcado {
 	}
 	
 	public static void ahorcadoesp() {
+		Scanner input = new Scanner(System.in);
 		String [] palabra = {"PATATA","CABALLERO","PELOTA","MONITOR","TECLADO"};
 		String palabraajugar=palabrajugar(palabra);
 		System.out.println(palabraajugar);
 		guiones(palabraajugar);
+		int fallos =0;
+		while (fallos!=6) {
+			System.out.println("Escribe una letra:");
+			String let=input.next();
+			let=let.toUpperCase();
+			stringaletra(let);
+			comparaguiones(palabraajugar,let);
+			
+		}
+		
+		
+	}
+	
+	public static void comparaguiones(String palabraajugar, String let) {
+		String report="";
+		char[]stringachar=new char[palabraajugar.length()];
+		for (int i=0;i<palabraajugar.length();i++) {
+			stringachar[i]=palabraajugar.charAt(i);
+		}
+		char letra=let.charAt(0);
+		
+		char[]arrayletra= {letra};
+		
+		for (int i=0;i<stringachar.length;i++) {
+			if(stringachar[i]==arrayletra[0]) {
+				report+=" "+letra;
+			} else report+=" _";
+		}
+		System.out.println(report);
+	}
+	
+	public static void stringaletra(String let) {
+		char letra=let.charAt(0);
 		
 		
 	}
