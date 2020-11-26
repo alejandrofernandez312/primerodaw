@@ -1,4 +1,6 @@
-package first;
+package First;
+
+import java.util.Scanner;
 
 public class Bingo {
 
@@ -6,9 +8,42 @@ public class Bingo {
 		// TODO Auto-generated method stub 
 		
 		int [] array=new int [15];
-		valores(array);
-		printarray(array);
+		Scanner input = new Scanner(System.in);
+		int op;
+		do {
+			op = menu();
+			switch (op) {
+			case 1:
+				valores(array);
+				System.out.println();
+				break;
+			case 2:
+				printarray(array);
+				System.out.println();
+				System.out.println();
+				break;
+			
+			case 3:
+				printarray(ordenar(array));
+				System.out.println();
+				System.out.println();
+			}
+		} while (op != 4);
 		
+		
+		
+		
+	}
+	
+	public static int menu() {
+		Scanner input = new Scanner(System.in);
+		System.out.println("\t1.-Dar valores al array");
+		System.out.println("\t2.-Ver array");
+		System.out.println("\t3.-Ver array ordenado");
+		System.out.println("\t4.-Salir");
+		System.out.println("\t\tOpción:");
+		int op = input.nextInt();
+		return op;
 	}
 	
 	public static int [] valores(int[]array) {
@@ -34,7 +69,6 @@ public class Bingo {
 				}
 			}
 		}
-		
 		return array;
 	}
 
