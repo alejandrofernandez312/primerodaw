@@ -1,8 +1,8 @@
-package First;
+package first;
 
 import java.util.Scanner;
 
-public class Ahorcadoo {
+public class Ahorcado {
 
 	public static void main(String[] args) {
 		Scanner input = new Scanner (System.in);
@@ -41,13 +41,12 @@ public class Ahorcadoo {
 		String report=guiones(palabra);
 		System.out.println(report);
 		System.out.println();
-		while (count<6) {
-			quequieres(palabra);
-			System.out.println("Tienes "+count+"/6 fallos");
+		quequieres(palabra);
+			
 			
 		}
 		
-	}
+	
 	
 	public static String guiones(String palabra) {
 		String report="";
@@ -77,12 +76,17 @@ public class Ahorcadoo {
 			}else if (op==2) {
 				System.out.println("Escribe una palabra:");
 				String respuesta=input.next();
-				if (respuesta.toUpperCase()==palabra) {
-					System.out.println("¡Enhorabuena, has ganado!");
-				}else quequieres(palabra);
-			}
+				comprobarpalabra(palabra.toUpperCase(),respuesta.toUpperCase(),fallo);
+				if (comprobarpalabra(palabra.toUpperCase(),respuesta.toUpperCase(),fallo)==false){
+					fallo++;
+					System.out.println("Llevas " +fallo+ " fallo de"+" 6");
+				}else System.out.println("Llevas " +fallo+ " fallo de"+" 6");
 			
 		}
+		}
+		System.out.println();
+		System.out.println("¡Has perdido!");
+		System.out.println();
 		
 	}
 	
@@ -92,6 +96,21 @@ public class Ahorcadoo {
 		String letra=input.next().toUpperCase();
 		char letraa=letra.charAt(0);
 		return letraa;
+	}
+	
+	public static boolean comprobarpalabra(String palabra, String respuesta, int fallo) {
+		boolean comprobar;
+		fallo=0;
+		if (respuesta==palabra) {
+			System.out.println("¡Has ganado!");
+			comprobar=true;
+		}
+		else {
+			System.out.println("¡Has fallado!");
+			fallo++;
+			comprobar=false;
+		}
+		return comprobar;
 	}
 	
 	public static String compararletra(String palabra, char letra, String report, int count){
@@ -115,5 +134,3 @@ public class Ahorcadoo {
 		return nuevamascara;
 	}
 }
-
-
