@@ -1,4 +1,4 @@
-package First;
+package first;
 
 import java.util.Scanner;
 
@@ -24,7 +24,7 @@ public class Bingo {
 				break;
 			
 			case 3:
-				printarray(ordenar(array));
+				array=ordenar(array);
 				System.out.println();
 				System.out.println();
 			}
@@ -61,7 +61,7 @@ public class Bingo {
 	
 	public static int [] ordenar(int[]array) {
 		for (int i=0;i<array.length;i++) {
-			for (int j=array.length-2;j>=i;i--) {
+			for (int j=array.length-2;j>=i;j--) {
 				if (array[j]>array[j+1]) {
 					int aux=array[j];
 					array[j]=array[j+1];
