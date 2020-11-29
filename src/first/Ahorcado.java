@@ -2,7 +2,8 @@ package First;
 
 import java.util.Scanner;
 
-public class Ahorcadoo {
+public class Ahorcado {
+	static int fallo = 0;
 
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
@@ -13,7 +14,11 @@ public class Ahorcadoo {
 			case 1:
 				ahorcadoesp();
 				break;
+			case 2:
+				ahorcadoeng();
+				break;
 			}
+			
 
 		} while (op != 3);
 
@@ -34,14 +39,75 @@ public class Ahorcadoo {
 		Scanner input = new Scanner(System.in);
 		int count = 0;
 		// Coger e imprimir palabra
-		String[] missword = { "CACA", "MOCO", "BOCA", "LACA", "PELO" }; // {"PATATA","CABALLERO","PELOTA","MONITOR","TECLADO"};
+		String[] missword = { "MONITOR", "MURCIELAGO", "GOMA", "BOTELLA", "TECLADO", "LLAVERO", "VENTANA" }; // {"PATATA","CABALLERO","PELOTA","MONITOR","TECLADO"};
 		String palabra = missword[(int) (Math.random() * 5)];
-		System.out.println(palabra);
+		
 		// Crear máscara de guiones con la palabra obtenida
 		String report = guiones(palabra);
 		System.out.println(report);
 		System.out.println();
 		quequieres(palabra);
+		
+	}
+	
+	public static void ahorcadoeng() {
+		Scanner input = new Scanner(System.in);
+		int count = 0;
+		// Coger e imprimir palabra
+		String[] missword = { "WINDOW", "DESKTOP", "HEADSET", "WEBCAM", "SOFTWARE", "MEMORY", "GAME" }; // {"PATATA","CABALLERO","PELOTA","MONITOR","TECLADO"};
+		String palabra = missword[(int) (Math.random() * 5)];
+		
+		// Crear máscara de guiones con la palabra obtenida
+		String report = guiones(palabra);
+		System.out.println(report);
+		System.out.println();
+		quequieres2(palabra);
+		
+	}
+	
+	public static void quequieres2(String palabra) {
+		
+		Scanner input = new Scanner(System.in);
+		int op;
+		String report = guiones(palabra);
+		while (fallo < 6) {
+			System.out.println("1-.Type a letter");
+			System.out.println("2-.Solve word");
+			System.out.println("Choose:");
+			op = input.nextInt();
+			if (op == 1) {
+				System.out.println("Type a letter:");
+				char letra = escribeunaletra();
+				report = compararletra2(palabra, letra, report);	
+				
+				if (report.replace(" ", "").equals(palabra)) {
+					System.out.println("You've won!");
+					System.exit(0);
+				}
+				
+
+			} else if (op == 2) {
+				System.out.println("Write a word:");
+				String respuesta = input.next();
+				comprobarpalabra(palabra.toUpperCase(), respuesta.toUpperCase(), fallo);
+				if (comprobarpalabra(palabra.toUpperCase(), respuesta.toUpperCase(), fallo) == false) {
+					fallo++;
+					System.out.println("You have failed!");
+					System.out.println("You have " + fallo + " fails out of" + " 6");
+					System.out.println();
+					System.out.println(report);
+				} else {
+					System.out.println("You've won!");
+					System.exit(0);
+				}
+
+			}
+		}
+		System.out.println();
+		System.out.println("You loose!");
+		System.out.println("The word was "+palabra);
+		System.out.println();
+		System.exit(0);
 
 	}
 
@@ -54,7 +120,7 @@ public class Ahorcadoo {
 	}
 
 	public static void quequieres(String palabra) {
-		int fallo = 0;
+		
 		Scanner input = new Scanner(System.in);
 		int op;
 		String report = guiones(palabra);
@@ -66,9 +132,8 @@ public class Ahorcadoo {
 			if (op == 1) {
 				System.out.println("Escribe una letra:");
 				char letra = escribeunaletra();
-				compararletra(palabra, letra, report, fallo);
-				System.out.println(compararletra(palabra, letra, report, fallo));
-				report = compararletra(palabra, letra, report, fallo);	
+				report = compararletra(palabra, letra, report);	
+				
 				if (report.replace(" ", "").equals(palabra)) {
 					System.out.println("¡Has ganado!");
 					System.exit(0);
@@ -81,21 +146,23 @@ public class Ahorcadoo {
 				comprobarpalabra(palabra.toUpperCase(), respuesta.toUpperCase(), fallo);
 				if (comprobarpalabra(palabra.toUpperCase(), respuesta.toUpperCase(), fallo) == false) {
 					fallo++;
+					System.out.println("¡Has fallado!");
 					System.out.println("Llevas " + fallo + " fallo de" + " 6");
-				} else
+					System.out.println();
+					System.out.println(report);
+				} else {
 					System.out.println("¡Has ganado!");
 					System.exit(0);
+				}
 
 			}
 		}
 		System.out.println();
 		System.out.println("¡Has perdido!");
+		System.out.println("La palabra era "+palabra);
 		System.out.println();
+		System.exit(0);
 
-	}
-	
-	public static void fallos() {
-		
 	}
 
 	public static char escribeunaletra() {
@@ -113,14 +180,13 @@ public class Ahorcadoo {
 			comprobar = true;
 
 		} else {
-			System.out.println("¡Has fallado!");
 			fallo++;
 			comprobar = false;
 		}
 		return comprobar;
 	}
 
-	public static String compararletra(String palabra, char letra, String report, int fallo) {
+	public static String compararletra(String palabra, char letra, String report) {
 		int contador = 0;
 		char[] arrayreport = report.replace(" ", "").toCharArray();
 		char[] arraypalabra = palabra.toCharArray();
@@ -132,12 +198,43 @@ public class Ahorcadoo {
 		}
 		if (contador == 0) {
 			fallo	++;
-		}
+			System.out.println("¡Has fallado!");
+			System.out.println("Llevas " + fallo + " fallo de" + " 6");
+			System.out.println();
+		} else { System.out.println("Llevas " + fallo + " fallo de" + " 6");
+		System.out.println();}
 		String nuevamascara = "";
 		for (int i = 0; i < arrayreport.length; i++) {
 			nuevamascara += arrayreport[i] + " ";
 		}
-
+		System.out.println(nuevamascara);
 		return nuevamascara;
+		
+	}
+	
+	public static String compararletra2(String palabra, char letra, String report) {
+		int contador = 0;
+		char[] arrayreport = report.replace(" ", "").toCharArray();
+		char[] arraypalabra = palabra.toCharArray();
+		for (int i = 0; i < arraypalabra.length; i++) {
+			if (letra == arraypalabra[i]) {
+				arrayreport[i] = letra;
+				contador++;
+			}
+		}
+		if (contador == 0) {
+			fallo	++;
+			System.out.println("You have failed!");
+			System.out.println("You have " + fallo + " fails out of" + " 6");
+			System.out.println();
+		} else { System.out.println("You have " + fallo + " fails out of" + " 6");
+		System.out.println();}
+		String nuevamascara = "";
+		for (int i = 0; i < arrayreport.length; i++) {
+			nuevamascara += arrayreport[i] + " ";
+		}
+		System.out.println(nuevamascara);
+		return nuevamascara;
+		
 	}
 }
