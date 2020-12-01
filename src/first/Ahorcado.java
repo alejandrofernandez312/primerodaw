@@ -1,9 +1,10 @@
-package First;
+package first;
 
 import java.util.Scanner;
 
 public class Ahorcado {
 	static int fallo = 0;
+	static int dibujo=0;
 
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
@@ -33,6 +34,67 @@ public class Ahorcado {
 		System.out.println("\t\tOpción:");
 		int op = input.nextInt();
 		return op;
+	}
+	
+	public static void dibujo(int j) {
+		switch (j) {
+			case 1:
+				System.out.println("   +---+");
+				System.out.println("   |   |");
+				System.out.println("   O   |");
+				System.out.println("       |");
+				System.out.println("       |");
+				System.out.println("       |");
+				System.out.println("=========");
+				break;
+			case 2:
+				System.out.println("   +---+");
+				System.out.println("   |   |");
+				System.out.println("   O   |");
+				System.out.println("   |   |");
+				System.out.println("       |");
+				System.out.println("       |");
+				System.out.println("=========");
+				break;
+			case 3:
+				System.out.println("   +---+");
+				System.out.println("   |   |");
+				System.out.println("   O   |");
+				System.out.println(" //|   |");
+				System.out.println("       |");
+				System.out.println("       |");
+				System.out.println("=========");
+				break;
+			case 4:
+				System.out.println("   +---+");
+				System.out.println("   |   |");
+				System.out.println("   O   |");
+				System.out.println(" //|\\  |");
+				System.out.println("       |");
+				System.out.println("       |");
+				System.out.println("=========");
+				break;
+			case 5:
+				System.out.println("   +---+");
+				System.out.println("   |   |");
+				System.out.println("   O   |");
+				System.out.println(" //|\\  |");
+				System.out.println("   |   |");
+				System.out.println(" //    |");
+				System.out.println("       |");
+				System.out.println("=========");
+				break;
+			case 6:
+				System.out.println("   +---+");
+				System.out.println("   |   |");
+				System.out.println("   O   |");
+				System.out.println(" //|\\  |");
+				System.out.println("   |   |");
+				System.out.println(" // \\  |");
+				System.out.println("       |");
+				System.out.println("=========");
+				break;
+		}
 	}
 
 	public static void ahorcadoesp() {
@@ -92,6 +154,7 @@ public class Ahorcado {
 				comprobarpalabra(palabra.toUpperCase(), respuesta.toUpperCase(), fallo);
 				if (comprobarpalabra(palabra.toUpperCase(), respuesta.toUpperCase(), fallo) == false) {
 					fallo++;
+					dibujo++;
 					System.out.println("You have failed!");
 					System.out.println("You have " + fallo + " fails out of" + " 6");
 					System.out.println();
@@ -146,6 +209,8 @@ public class Ahorcado {
 				comprobarpalabra(palabra.toUpperCase(), respuesta.toUpperCase(), fallo);
 				if (comprobarpalabra(palabra.toUpperCase(), respuesta.toUpperCase(), fallo) == false) {
 					fallo++;
+					dibujo++;
+					dibujo(dibujo);
 					System.out.println("¡Has fallado!");
 					System.out.println("Llevas " + fallo + " fallo de" + " 6");
 					System.out.println();
@@ -198,6 +263,8 @@ public class Ahorcado {
 		}
 		if (contador == 0) {
 			fallo	++;
+			dibujo++;
+			dibujo(dibujo);
 			System.out.println("¡Has fallado!");
 			System.out.println("Llevas " + fallo + " fallo de" + " 6");
 			System.out.println();
@@ -224,6 +291,7 @@ public class Ahorcado {
 		}
 		if (contador == 0) {
 			fallo	++;
+			dibujo++;
 			System.out.println("You have failed!");
 			System.out.println("You have " + fallo + " fails out of" + " 6");
 			System.out.println();
