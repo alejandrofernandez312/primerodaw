@@ -3,16 +3,31 @@ package first;
 import java.util.Scanner;
 
 public class GameArrayBi {
-
+	static Scanner input = new Scanner(System.in);
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Scanner input = new Scanner(System.in);
+		
 		System.out.println("Dimensión para el mapa:");
 		int dimension= input.nextInt();
 		
 		int [][]map=createMap(dimension);
 		System.out.println(maptoString(map));
+		jugar(dimension);
 
+	}
+	
+	public static void jugar(int dimension) {
+		System.out.println("Utiliza W,A,S,D para moverte!");
+		char mover=input.next().toUpperCase().charAt(0);
+		mover(mover);
+	}
+	
+	public static void mover(char mover) {
+		switch (mover) {
+		case 'W':
+			
+			break;
+		}
 	}
 	
 	public static int[][]createMap(int d){
@@ -23,6 +38,7 @@ public class GameArrayBi {
 					map[f][c]=1;
 				else
 					map[f][c]=0;
+		map [d/2][d/2]=5;
 		return map;
 	}
 	
