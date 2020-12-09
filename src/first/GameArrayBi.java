@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class GameArrayBi {
 	static Scanner input = new Scanner(System.in);
+	static boolean ganar=false;
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -18,13 +19,15 @@ public class GameArrayBi {
 	}
 
 	public static void jugar(int dimension, int[][] map) {
-		System.out.println("Utiliza W,A,S,D para moverte:");
-		char mover = input.next().toUpperCase().charAt(0);
-		mover(mover, map);
+		while (ganar==false) {
+		mover(map);
 		System.out.println(maptoString(map));
+		}
 	}
 
-	public static int[][] mover(char mover, int[][] map) {
+	public static int[][] mover(int[][] map) {
+		System.out.println("Utiliza W,A,S,D para moverte:");
+		char mover = input.next().toUpperCase().charAt(0);
 		switch (mover) {
 		case 'W':
 			for (int i = 0; i < map.length; i++) {
@@ -34,8 +37,9 @@ public class GameArrayBi {
 							map[i - 1][c] = 5;
 							map[i][c] = 0;
 							System.out.println(maptoString(map));
+							ganar=true;
 							System.out.println("¡Has ganado!");
-							System.exit(0);
+							//acabar
 						} else if (map[i - 1][c] != 1) {
 							map[i - 1][c] = 5;
 							map[i][c] = 0;
@@ -45,6 +49,67 @@ public class GameArrayBi {
 						}
 					}
 			}
+		case 'S':
+			for (int i = 0; i < map.length; i++) {
+				for (int c = 0; c < map[i].length; c++)
+					if (map[i][c] == 5) {
+						if (map[i + 1][c] == 6) {
+							map[i + 1][c] = 5;
+							map[i][c] = 0;
+							System.out.println(maptoString(map));
+							ganar=true;
+							System.out.println("¡Has ganado!");
+							//acabar
+						} else if (map[i + 1][c] != 1) {
+							map[i + 1][c] = 5;
+							map[i][c] = 0;
+							return map;
+						} else {
+							System.out.println("¡Has chocado con una roca, no puedes seguir hacia arriba!");
+						}
+					}
+			}
+		case 'A':
+			for (int i = 0; i < map.length; i++) {
+				for (int c = 0; c < map[i].length; c++)
+					if (map[i][c] == 5) {
+						if (map[i][c - 1] == 6) {
+							map[i][c - 1] = 5;
+							map[i][c] = 0;
+							System.out.println(maptoString(map));
+							ganar=true;
+							System.out.println("¡Has ganado!");
+							//acabar
+						} else if (map[i][c - 1] != 1) {
+							map[i][c - 1] = 5;
+							map[i][c] = 0;
+							return map;
+						} else {
+							System.out.println("¡Has chocado con una roca, no puedes seguir hacia arriba!");
+						}
+					}
+			}
+		case 'D':
+			for (int i = 0; i < map.length; i++) {
+				for (int c = 0; c < map[i].length; c++)
+					if (map[i][c] == 5) {
+						if (map[i][c + 1] == 6) {
+							map[i][c + 1] = 5;
+							map[i][c] = 0;
+							System.out.println(maptoString(map));
+							ganar=true;
+							System.out.println("¡Has ganado!");
+							//acabar
+						} else if (map[i][c + 1] != 1) {
+							map[i][c + 1] = 5;
+							map[i][c] = 0;
+							return map;
+						} else {
+							System.out.println("¡Has chocado con una roca, no puedes seguir hacia arriba!");
+						}
+					}
+			}
+			
 		}
 		return map;
 	}
