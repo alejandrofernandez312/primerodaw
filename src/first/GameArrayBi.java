@@ -46,69 +46,16 @@ public class GameArrayBi {
 							return map;
 						} else {
 							System.out.println("¡Has chocado con una roca, no puedes seguir hacia arriba!");
+							map[i][c] = 5;
+							return map;
 						}
 					}
 			}
 		case 'S':
-			for (int i = 0; i < map.length; i++) {
-				for (int c = 0; c < map[i].length; c++)
-					if (map[i][c] == 5) {
-						if (map[i + 1][c] == 6) {
-							map[i + 1][c] = 5;
-							map[i][c] = 0;
-							System.out.println(maptoString(map));
-							ganar=true;
-							System.out.println("¡Has ganado!");
-							//acabar
-						} else if (map[i + 1][c] != 1) {
-							map[i + 1][c] = 5;
-							map[i][c] = 0;
-							return map;
-						} else {
-							System.out.println("¡Has chocado con una roca, no puedes seguir hacia arriba!");
-						}
-					}
-			}
+			
 		case 'A':
-			for (int i = 0; i < map.length; i++) {
-				for (int c = 0; c < map[i].length; c++)
-					if (map[i][c] == 5) {
-						if (map[i][c - 1] == 6) {
-							map[i][c - 1] = 5;
-							map[i][c] = 0;
-							System.out.println(maptoString(map));
-							ganar=true;
-							System.out.println("¡Has ganado!");
-							//acabar
-						} else if (map[i][c - 1] != 1) {
-							map[i][c - 1] = 5;
-							map[i][c] = 0;
-							return map;
-						} else {
-							System.out.println("¡Has chocado con una roca, no puedes seguir hacia arriba!");
-						}
-					}
-			}
+			
 		case 'D':
-			for (int i = 0; i < map.length; i++) {
-				for (int c = 0; c < map[i].length; c++)
-					if (map[i][c] == 5) {
-						if (map[i][c + 1] == 6) {
-							map[i][c + 1] = 5;
-							map[i][c] = 0;
-							System.out.println(maptoString(map));
-							ganar=true;
-							System.out.println("¡Has ganado!");
-							//acabar
-						} else if (map[i][c + 1] != 1) {
-							map[i][c + 1] = 5;
-							map[i][c] = 0;
-							return map;
-						} else {
-							System.out.println("¡Has chocado con una roca, no puedes seguir hacia arriba!");
-						}
-					}
-			}
 			
 		}
 		return map;
