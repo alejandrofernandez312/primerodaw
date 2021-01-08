@@ -1,0 +1,110 @@
+package second;
+
+import java.util.Scanner;
+
+public class TresenRaya {
+	static Scanner input = new Scanner(System.in);
+
+	public static void main(String[] args) {
+		int op;
+		do {
+			menu();
+			System.out.println("Elige una opción:");
+			op = input.nextInt();
+			boolean fin = false;
+			int turno = 0;
+			switch (op) {
+			case 1:
+				char[][] tablero = new char[3][3];
+				mapa(tablero);
+				char x = 'O';
+				do {
+					System.out.println("Turno del jugador " + x + ":");
+					turno(tablero, x);
+					turno++;
+					mapa(tablero);
+					fin = comprobar(fin, tablero, x, turno);
+					x = jugador(x);
+
+				} while (fin != true);
+			}
+		} while (op != 2);
+
+	}
+
+	public static void mapa(char[][] tablero) {
+		System.out.println(tablero[0][0] + "|" + tablero[0][1] + "|" + tablero[0][2]);
+		System.out.println("-+-+-");
+		System.out.println(tablero[1][0] + "|" + tablero[1][1] + "|" + tablero[1][2]);
+		System.out.println("-+-+-");
+		System.out.println(tablero[2][0] + "|" + tablero[2][1] + "|" + tablero[2][2]);
+	}
+
+	public static char jugador(char x) {
+		if (x == 'O')
+			x = 'X';
+		else if (x == 'X')
+			x = 'O';
+		return x;
+	}
+
+	public static char[][] turno(char[][] tablero, char x) {
+		int h = 0;
+		int v = 0;
+
+		while (v < 1 || v > 3) {
+			System.out.println("Elige la fila:");
+			v = input.nextInt();
+		}
+		while (h < 1 || h > 3) {
+			System.out.println("Elige la columna:");
+			h = input.nextInt();
+		}
+		while (tablero[v - 1][h - 1] == 'X' || tablero[v - 1][h - 1] == 'O') {
+			System.out.println("No puedes colocar la ficha en ese sitio, prueba otra vez");
+			System.out.println();
+			System.out.println("Elige la fila:");
+			v = input.nextInt();
+			System.out.println("Elige la columna:");
+			h = input.nextInt();
+		}
+
+		tablero[v - 1][h - 1] = x;
+		return tablero;
+	}
+
+	public static void menu() {
+		System.out.println("\t¡Bienvenido al Tres en Raya!");
+		System.out.println("---------------------------------------------");
+		System.out.println("\t1.-Jugar");
+		System.out.println("\t2.-Salir");
+	}
+
+	public static boolean comprobar(boolean fin, char[][] tablero, char x, int turno) {
+		for (int i = 0; i < 3; i++) {
+			if (tablero[0][i] == x && tablero[1][i] == x && tablero[2][i] == x) {
+				fin = true;
+			}
+			if (tablero[i][0] == x && tablero[i][1] == x && tablero[i][2] == x) {
+				fin = true;
+			}
+		}
+		if (tablero[0][0] == x && tablero[1][1] == x && tablero[2][2] == x) {
+			fin = true;
+		}
+		if (tablero[0][2] == x && tablero[1][1] == x && tablero[2][0] == x) {
+			fin = true;
+		}
+
+		if (fin == true) {
+			System.out.println("Ha ganado el jugador " + x + ", enhorabuena!");
+			System.out.println();
+		}
+		if (turno == 9 && fin == false) {
+			fin = true;
+			System.out.println("¡Empate!");
+			System.out.println();
+		}
+		return fin;
+	}
+}
