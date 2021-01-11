@@ -1,0 +1,88 @@
+package second;
+
+import java.util.Scanner;
+
+public class Navidades {
+	static Scanner input=new Scanner(System.in);
+
+	public static void main(String[] args) {
+		int[][]array= rellenararray();
+		int op;
+		do {
+			menu();
+			System.out.println("Elige una opción:");
+			op=input.nextInt();
+			switch(op) {
+				case 1: System.out.println(arraytoString(array));
+				break;
+				case 2: System.out.println(arraytoString(zoom(array)));
+				array=zoom(array);
+				break;
+				case 3: 
+					System.out.println(arraytoString(girar(array)));
+					array=girar(array);
+			}
+		}while(op!=4);
+
+	}
+	
+	public static int[][]rellenararray(){
+		//int[][]array={{2,3,4}, {5,6,7}, {8,9,0}};
+		int[][]array={{3,4}, {5,6}};
+		return array;
+		
+	}
+	
+	public static int[][]zoom(int[][]array){
+		int[][]newarray;
+		int x=array[0].length*2;
+		int y=array.length*2;
+		newarray=new int[x][y];
+		for(int f=0;f<newarray.length;f++) {
+			for(int c=0;c<newarray[f].length;c++) {
+				if(c<array.length && ) {
+					newarray[f][c]=array[f][f];
+					
+				}
+			/*newarray[f][c]=array[f][f];
+				newarray[f][c+1]=array[f][f++];
+				c++;*/
+				
+			}
+		}
+		System.out.println(arraytoString(newarray));
+		return newarray;
+	}
+	
+	public static int[][]girar(int[][]array){
+		int[][]newarray=new int [array.length][array[0].length];
+		for(int i=0;i<newarray.length;i++) {
+			int count=1;
+			for(int k=0;k<newarray[i].length;k++) {
+				newarray[i][k]=array[array[i].length-count][i];
+				count++;
+			}
+		}
+		return newarray;
+	}
+	
+	public static void menu() {
+		System.out.println("\t\tMenu");
+		System.out.println("-------------------------------------");
+		System.out.println("\t1.-Ver array");
+		System.out.println("\t2.-Zoom");
+		System.out.println("\t3.-Girar");
+		System.out.println("\t4.-Salir");
+	}
+	
+	public static String arraytoString(int[][] array) {
+		String arrayString = "";
+		for (int f = 0; f < array.length; f++) {
+			arrayString += "\n";
+			for (int c = 0; c < array[f].length; c++)
+				arrayString += " " + array[f][c];
+		}
+		return arrayString;
+	}
+
+}
